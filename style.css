@@ -1,0 +1,47 @@
+
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   background: #1b1d22;
+   color: #eee;
+}
+
+
+/* == [ posts ] 
+== == == == == == == == == */
+form {
+   display: block;
+}
+form > label {
+   display: block;
+}
+t { display: block; }
+textarea { width: 100%; }
+#submit_btn {
+   min-width: 100px;
+   padding: 2vw;
+   border-radius: 1.5vw;
+   border: transparent;
+   cursor: pointer;
+}
+
+post {
+   display: block;
+   background: #f001;
+}
+
+post > content {
+   display: block;
+   /* background: #f5f5f5; */
+}
+post > options {
+   display: block;
+   /* background: #5f5f5f; */
+}
+message {
+   display: block;
+}

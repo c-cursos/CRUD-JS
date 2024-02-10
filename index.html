@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html lang='pt-br'>
+   <head>
+      <title></title>
+      
+      <link rel='icon' href='src/pix/logo.svg' type='svg+xml'>
+      <meta charset='UTF-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <link rel='stylesheet' href='./style.css'>
+      <script src='./script.js' defer></script>
+   </head>
+   <body>
+
+      <main>
+         <h1 site="https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-building-todo-app/">Social</h1>
+
+         <post-input-area>
+            <form id="form">
+               <label >
+                  <t>Write your post here</t>
+                  <textarea name="post" id="postInput" rows="10"></textarea>
+               </label>
+               <message id="msg">z</message>
+               <button type="submit" id="submit_btn">Post</button>
+            </form>
+         </post-input-area>
+
+         <posts id="posts">
+            <h3>Posts</h3>
+
+            <post>
+               <content>
+                  <p>sdfsdf</p>
+               </content>
+               <options>
+                  <i class="fas fa-edit" onclick="editPost(this)"></i>
+                  <i class="fas fa-trash-alt" onclick="deletePost( this )"></i>
+               </options>
+            </post>
+         </posts>
+      </main>
+
+   </body>
+</html>
