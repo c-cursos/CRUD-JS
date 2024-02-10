@@ -29,7 +29,7 @@ addEventListener(
          "submit",
          () => {
             event.preventDefault();
-            _( "button clicked" );
+            _( "event: button clicked" );
          
             formValidation();
          }
@@ -42,7 +42,7 @@ let
    formValidation = () => {
       if( postInput.value === "" ) {
          msg.innerHTML = "Post cannot be blank";
-         _( "failurelevation: ," );
+         _( "failure: ," );
       } else {
          _( "successs" );
          // msg.innerHTML = postInput.value;
