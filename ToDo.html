@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang='pt-br'>
+   <head>
+      <title></title>
+      
+      <link rel='icon' href='src/pix/logo.svg' type='svg+xml'>
+      <meta charset='UTF-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <link rel='stylesheet' href='./style-ToDo.css'>
+      <script src='./script-ToDo.js' defer></script>
+   </head>
+   <body>
+
+      <header>
+         <h1 id="title"></h1>
+      </header>
+      <main id="main">
+
+         <btn-add-new id="addBtn">
+            <t>Add new task</t>
+            <i class="fa fa-plus"></i>
+         </btn-add-new>
+
+         <tasks>
+            <h2>Tasks</h2>
+         
+            
+         </tasks>
+         <modal>
+            <form action="" id="formModal">
+               <dialog>
+                  <header>
+                     <h5>Add New Task</h5>
+                     <button close="" id="btnClose">&Cross;</button>      
+                  </header>
+                  <home>
+                     <label>
+                        <t>Task Title</t>
+                        <input type="text" id="modalTitleInput">
+                     </label>
+                     <label>
+                        <t>Due Date</t>
+                        <input type="text" id="modalDateInput">
+                     </label>
+                     <label>
+                        <t>Description</t>
+                        <textarea id="modalTextareaInput"></textarea>
+                     </label>
+                  </home>
+                  <footer>
+                     <input type="button" id="modalCloseBtn" value="close">
+                     <input type="submit" id="modalSubmitBtn" value="add">
+                  </footer>
+               </dialog>
+            </form>
+         </modal>
+      </main>
+
+   </body>
+</html>

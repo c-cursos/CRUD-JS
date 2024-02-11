@@ -1,0 +1,55 @@
+
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   background: #1b1d22;
+   color: #eee;
+}
+
+header {
+   padding: 2vw;
+   background: #69e;
+}
+
+#main {
+   border: 2px solid #abcea1;
+}
+/* == [ Todo ] 
+== == == == == == == == == */
+
+/* == [ modal ] 
+== == == == == == == == == */
+modal {
+   display: block;
+   position: relative;
+   z-index: 9;
+}
+
+modal > form label {
+   display: grid;
+}
+
+dialog {
+   display: block;
+   position: absolute;
+   inset-inline-start: 0px;
+   inset-inline-end: 0px;
+   width: fit-content;
+   height: fit-content;
+   background-color: canvas;
+   color: canvastext;
+   margin: auto;
+   border-width: initial;
+   border-style: solid;
+   border-color: initial;
+   border-image: initial;
+   padding: 1em;
+}
+
+dialog > home {
+   display: block;
+}
