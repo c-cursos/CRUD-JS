@@ -63,7 +63,7 @@ let
             <p>${ data.text }</p>
          </content>
          <options>
-            <i class="fas fa-edit" onClick="editPost(this)"></i>
+            <i class="fas fa-edit" onClick="editPost( this )"></i>
             <i class="fas fa-trash-alt" onclick="deletePost( this )"></i>
          </options>
       </post>`;

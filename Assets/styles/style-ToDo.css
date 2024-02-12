@@ -1,0 +1,151 @@
+
+
+* {
+   box-sizing: border-box;
+}
+
+html {
+   font-family: sans-serif;
+   color: #333;
+}
+body {
+   margin: 0;
+   background: #1b1d22;
+   /* background: #e5e5e5; */
+   min-height: 100vh;
+}
+
+header {
+   padding: 2vw;
+   background: #69e;
+}
+
+#main {
+   margin: auto;
+   padding: 2vw 0;
+}
+
+body > main > home {
+   display: grid;
+   width: clamp( 100px, 95%, 950px );
+   margin: auto;
+   padding: 2vw;
+   background: #fff;
+   border: 5px solid #abcea1;
+   border-radius: 8px;
+}
+/* == [ Todo ] 
+== == == == == == == == == */
+#addBtn {
+   display: grid;
+   grid-auto-flow: column;
+   align-items: center;
+   justify-content: space-between;
+   background-color: #abcea159;
+   padding: 5px 10px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.fa-plus {
+   background-color: #abcea1;
+   padding: 3px;
+   border-radius: 3px;
+}
+
+/* == [ tasks ] 
+== == == == == == == == == */
+tasks {
+   display: grid;
+   gap: 2vw;
+   padding: 2vw 0;
+}
+task {
+   display: grid;
+   padding: 0.5em;
+   border: 3px solid #abcea1;
+   background-color: #e2eede;
+   border-radius: 6px;
+}
+task > t {
+   font-weight: 600;
+}
+task-options {
+   display: grid;
+   grid-auto-flow: column;
+   gap: 0.5em;
+   align-items: center;
+   justify-content: center;
+}
+
+
+/* == [ modal ] 
+== == == == == == == == == */
+modal {
+   /* display: block; */
+   /* position: relative; */
+   z-index: 9;
+
+   display: block;
+   position: absolute;
+   inset-inline-start: 0px;
+   inset-inline-end: 0px;
+   width: fit-content;
+   height: fit-content;
+   background-color: canvas;
+   /* color: canvastext; */
+   margin: auto;
+   /* border-image: initial; */
+   border: 3px solid #abcea1;
+   border-radius: 8px;
+   /* padding: 1em; */
+}
+
+modal header {
+   display: grid;
+   grid-auto-flow: column;
+   align-items: center;
+   justify-content: space-between;
+}
+
+modal form {
+   display: grid;
+   gap: 1.5em;
+   padding: 1em;
+}
+modal > form label {
+   display: grid;
+}
+
+dialog {
+   display: block;
+   position: absolute;
+   inset-inline-start: 0px;
+   inset-inline-end: 0px;
+   width: fit-content;
+   height: fit-content;
+   background-color: canvas;
+   color: canvastext;
+   margin: auto;
+   border-width: initial;
+   border-style: solid;
+   border-color: initial;
+   border-image: initial;
+   padding: 1em;
+}
+
+modal form msg {
+   position: relative;
+}
+modal form msg > t {
+   position: absolute;
+   color: #f55;
+   font-size: .9rem;
+}
+
+modal footer {
+   display: grid;
+   grid-auto-flow: column;
+   align-items: center;
+   justify-content: end;
+   gap: 0.5em;
+}

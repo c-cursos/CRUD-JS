@@ -11,8 +11,8 @@
       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-      <link rel='stylesheet' href='./style-ToDo.css'>
-      <script src='./script-ToDo.js' defer></script>
+      <link rel='stylesheet' href='./Assets/styles/style-ToDo.css'>
+      <script src='./Assets/scripts/script-ToDo.js' defer></script>
    </head>
    <body>
 
@@ -20,45 +20,48 @@
          <h1 id="title"></h1>
       </header>
       <main id="main">
-
-         <btn-add-new id="addBtn">
-            <t>Add new task</t>
-            <i class="fa fa-plus"></i>
-         </btn-add-new>
-
-         <tasks>
-            <h2>Tasks</h2>
-         
+         <home>
+            <h2>ToDo App</h2>
             
-         </tasks>
-         <modal>
-            <form action="" id="formModal">
-               <dialog>
-                  <header>
-                     <h5>Add New Task</h5>
-                     <button close="" id="btnClose">&Cross;</button>      
-                  </header>
-                  <home>
-                     <label>
-                        <t>Task Title</t>
-                        <input type="text" id="modalTitleInput">
-                     </label>
-                     <label>
-                        <t>Due Date</t>
-                        <input type="text" id="modalDateInput">
-                     </label>
-                     <label>
-                        <t>Description</t>
-                        <textarea id="modalTextareaInput"></textarea>
-                     </label>
-                  </home>
+            <btn-add-new id="addBtn" toggle="">
+               <t>Add new task</t>
+               <i class="fa fa-plus"></i>
+            </btn-add-new>
+            
+            <tasks id="tasks">
+               <h3>Tasks</h3>
+               
+               
+            </tasks>
+
+            <modal id="modal">
+               <header>
+                  <h3>Add New Task</h3>
+                  <button close="" id="btnClose">&Cross;</button>      
+               </header>
+               <form action="" id="formModal">
+                  <label>
+                     <t>Task Title</t>
+                     <input type="text" id="modalTextInput">
+                     <msg id="taskTextMsg"></msg>
+                  </label>
+                  <label>
+                     <t>Due Date</t>
+                     <input type="date" id="modalDateInput">
+                     <msg id="taskDateMsg"></msg>
+                  </label>
+                  <label>
+                     <t>Description</t>
+                     <textarea id="modalDescriptionInput"></textarea>
+                  </label>
                   <footer>
                      <input type="button" id="modalCloseBtn" value="close">
                      <input type="submit" id="modalSubmitBtn" value="add">
                   </footer>
-               </dialog>
-            </form>
-         </modal>
+               </form>
+            </modal>
+
+      </home>
       </main>
 
    </body>
