@@ -85,7 +85,7 @@ modal {
    /* position: relative; */
    z-index: 9;
 
-   display: block;
+   display: none;
    position: absolute;
    inset-inline-start: 0px;
    inset-inline-end: 0px;

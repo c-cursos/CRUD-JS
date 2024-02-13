@@ -27,10 +27,31 @@ function formValidation() {
    } else {
       _( "success" );
       acceptData();
-      // modal.style.display = "none";
+      modal.style.display = "none";
       _( localStorage.getItem( "data" ) );
    }
 }
+
+addBtn.addEventListener(
+   "click",
+   () => {
+      modal.style.display = "grid";
+   }
+);
+
+modalCloseBtn.addEventListener(
+   "click",
+   () => {
+      modal.style.display = "none";
+   }
+);
+
+btnClose.addEventListener(
+   "click",
+   () => {
+      modal.style.display = "none";
+   }
+);
 
 let 
    resetForm = () => {
@@ -59,7 +80,7 @@ let
       data.map( ( x, y ) => {
          return(
             tasks.innerHTML += `
-               <task id="task${x}">
+               <task id="${y}">
                   <t>${ x.text }</t>
                   <small>${ x.date }</small>
                   <p>${ x.description }</p>
@@ -87,5 +108,31 @@ let
       );
     
       _( {data} );
+   },
+   editTask = editTaskBtn => {
+      /* 
+         Line 1 is targetting the task that we selected to edit
+         Lines 2, 3, and 4, are targetting the values [task, date, description] of the task that we selected to edit
+         line 5 is running the delete function to remove the selected data both from the local storage, HTML element, and data array.
+      */
+      let 
+         selectedTask = editTaskBtn.parentElement.parentElement
+      ;
+
+      modalTextInput.value = selectedTask.children[0].innerHTML;
+      modalDateInput.value = selectedTask.children[1].innerHTML;
+      modalDescriptionInput.value = selectedTask.children[2].innerHTML;
+      
+      modal.style.display = "grid";
+      deleteTask( editTaskBtn );
    }
 ;
+
+( () => {
+   data = JSON.parse( 
+      localStorage.getItem( "data" )
+   ) || [];
+   
+   _( "getData: ", data );
+   createTasks();
+} )();
