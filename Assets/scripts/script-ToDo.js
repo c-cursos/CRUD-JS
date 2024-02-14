@@ -20,7 +20,11 @@ formModal.addEventListener(
 );
 
 function formValidation() {
-   if( modalTextInput.value === "") {
+   if( 
+      modalTextInput.value === ""
+      || modalDateInput.value === ""
+      || modalDescriptionInput.value === ""
+   ) {
       _( "failure" );
       modalTextInput.style.border = "3px solid #f55";
       taskTextMsg.innerHTML = "<t>Task cannot be blank</t>";
@@ -132,7 +136,7 @@ let
    data = JSON.parse( 
       localStorage.getItem( "data" )
    ) || [];
-   
+
    _( "getData: ", data );
    createTasks();
 } )();

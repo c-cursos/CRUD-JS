@@ -27,7 +27,7 @@ header {
 
 body > main > home {
    display: grid;
-   width: clamp( 100px, 95%, 950px );
+   width: clamp( 100px, 95%, 650px );
    margin: auto;
    padding: 2vw;
    background: #fff;
@@ -98,6 +98,7 @@ modal {
    border: 3px solid #abcea1;
    border-radius: 8px;
    /* padding: 1em; */
+   transition: 1s 8s ease-in-out;
 }
 
 modal header {
