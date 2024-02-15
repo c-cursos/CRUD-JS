@@ -4,22 +4,24 @@
 let 
    _ = ( ...v ) => console.log( ...v ),
    Users = JSON.parse( localStorage.getItem( "Users" ) ) || [],
-   cardTemplate = `
-   <card>
-      <header>
-         <user name>${ userNameInput.value }</user>
-      </header>
-      <bd>
-         <user email>
-            <b>email</b>
-            <t>${ userEmailInput.value }</t>
-         </user>
-         <user password>
-            <b>password</b>
-            <t>${ userPasswordInput.value }</t>
-         </user>
-      </bd>
-   </card>`
+   cardTemplate = ( name, pwd, email ) => { 
+       `
+         <card>
+            <header>
+               <user name>${ name.value }</user>
+            </header>
+            <bd>
+               <user email>
+                  <b>email</b>
+                  <t>${ email }</t>
+               </user>
+               <user password>
+                  <b>password</b>
+                  <t>${ pwd }</t>
+               </user>
+            </bd>
+         </card>
+      `
 ;
 
 addEventListener(
@@ -86,23 +88,24 @@ function createUserCard() {
 
    Users.map( ( k, v ) => {
       _( "Oi" );
-      return usersSection.innerHTML += `
-         <card>
-            <header>
-               <user name>${ k.name }</user>
-            </header>
-            <bd>
-               <user email>
-                  <b>email</b>
-                  <t>${ k.email }</t>
-               </user>
-               <user password>
-                  <b>password</b>
-                  <t>${ k.password }</t>
-               </user>
-            </bd>
-         </card>
-      `;
+      // return usersSection.innerHTML += `
+//          <card>
+//             <header>
+//                <user name>${ k.name }</user>
+//             </header>
+//             <bd>
+//                <user email>
+//                   <b>email</b>
+//                   <t>${ k.email }</t>
+//                </user>
+//                <user password>
+//                   <b>password</b>
+//                   <t>${ k.password }</t>
+//                </user>
+//             </bd>
+//          </card>
+//       `;
+   cardTemplate( k.name, k.pwd, k.email );
       resetForm();
    } );
 }
