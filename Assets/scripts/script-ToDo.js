@@ -62,6 +62,11 @@ let
       modalTextInput.value = "";
       modalDateInput.value = "";
       modalDescriptionInput.value = "";
+      // [ modalTextInput, 
+      //    modalDateInput, 
+      //    modalDescriptionInput ].forEach(
+      //    v.value = ""
+      // );
    },
    data = [],
    acceptData = () => {
