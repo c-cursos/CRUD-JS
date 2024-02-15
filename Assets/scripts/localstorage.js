@@ -71,9 +71,9 @@ function acceptData() {
    Users.push( 
       {
          id: `User-${ Math.round( Math.random() * 99999999 ) }-${ Users.length + 1 }-${ Math.round( Math.random() * 99999999 ) }-${Users.length}`,
-         name: userNameInput.value,
-         password: userPasswordInput.value,
-         email: userEmailInput.value,
+         name: userNameInput.value.trim(),
+         password: userPasswordInput.value.trim(),
+         email: userEmailInput.value.trim(),
       }
    );
 
