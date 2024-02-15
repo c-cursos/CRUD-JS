@@ -1,151 +1,21 @@
 
 
-<meta charset='UTF-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<style>
-   * { box-sizing: border-box; }
-   html {
-      background: #000;
-      color: #27f;
-      font: 1em sans-serif;
-   }
-   body {
-      display: grid;
-      margin: 0;
-      background: #f5f5f5;
-   }
-
-   appbar {
-      display: grid;
-      height: 90px;
-      background: #27f7;
-      position: sticky;
-      top: 0;
-   }
-   appbar > name {
-      display: grid;
-      place-items: center;
-      width: 70%;
-      margin: auto;
-   }
-
-   cadastro {
-      display: grid;
-      background: #def;
-      width: clamp( 100px, 95%, 650px );
-      margin: auto;
-      border: 4px solid #9055;
-      border-radius: .5em;
-   }
-   form > header {
-      background: #27f5;
-      padding: 1.5rem;
-   }
-   form > header > name {
-      font-size: 1.5rem;
-      font-weight: bold;
-   }
-   form {
-      background: #27f3;
-      display: grid;
-      height: 100%;
-   }
-   form > bd {
-      display: grid;
-      grid-auto-flow: row;
-      gap: 1.5em;
-      padding: 1.5rem;
-   }
-   form > bd > label {
-      display: grid;
-   }
-   form > bd > label > input {
-      border: transparent;
-      padding: 0.3rem;
-      border-radius: .3rem;
-   }
-   form > footer {
-      background: #27f5;
-      gap: 1.5em;
-      padding: 1rem 1.5rem;
-   }
-   form > footer > input {
-      border: transparent;
-      padding: 0.3rem 1rem;
-      border-radius: .3rem;
-      color: #27f;
-      font-weight: bold;
-   }
-
-   section[cadastro], section[log] {
-      padding: 5vw 0;
-   }
-   log {
-      display: grid;
-      /* background: #fff;
-      background-image: linear-gradient( 
-         to left,
-         #27f3,
-         #27f3
-      ); */
-      width: clamp( 100px, 95%, 650px );
-      margin: auto;
-      gap: 1.5rem;
-   }
-   log > users {
-      display: grid;
-      gap: 5vw;
-   }
-   log > users > card {
-      display: grid;
-      background: #f5f5f5;
-      width: 95%;
-      margin: auto;
-      border-radius: 1rem;
-      overflow: hidden;
-      border: 1px #0003 solid;
-   }
-   card > header {
-      display: grid;
-      background: #27f5;
-      padding: 1.5rem;
-   }
-   card > header > user[name] {
-      display: grid;
-   }
-   card > bd {
-      display: grid;
-      gap: 1rem;
-      padding: 1.5rem;
-   }
-   card > bd > user {
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      gap: 2vw;
-      width: 100%;
-      text-wrap: nowrap;
-   }
-   card > bd > user[email] {
-   }
-   card > bd > user[password] {
-      width: 100%;
-   }
-   card > bd > user > b {
-   }
-   card > bd > user > t {
-      width: 100%;
-   }
-</style>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <link rel="stylesheet" href="./Assets/styles/localstorage.css">
+   <script src="./Assets/scripts/localstorage.js" defer></script>
+</head>
 <appbar>
    <name>
       <h1>localstorage</h1>
    </name>
 </appbar>
 
-<section cadastro>
-   <cadastro>
+
+<cadastro section>
+   <home>
       <form action="" id="formUser">
          <header>
             <name>User</name>
@@ -168,131 +38,16 @@
             <input type="submit" id="submitBtn">
          </footer>
       </form>
-   </cadastro>
-</section>
-<section log>
-   <log id="log">
+   </home>
+</cadastro>
+
+
+<log section id="log">
+   <home>
       <name>Usuários</name>
       <users id="usersSection"></users>
-   </log>
-</section>
+   </home>
+</log>   
 
-<script>
-   "use strict";
-   let 
-      _ = ( ...v ) => console.log( ...v ),
-      Users = JSON.parse( localStorage.getItem( "Users" ) ) || [],
-      cardTemplate = `
-      <card>
-         <header>
-            <user name>${ userNameInput.value }</user>
-         </header>
-         <bd>
-            <user email>
-               <b>email</b>
-               <t>${ userEmailInput.value }</t>
-            </user>
-            <user password>
-               <b>password</b>
-               <t>${ userPasswordInput.value }</t>
-            </user>
-         </bd>
-      </card>`
-   ;
 
-   addEventListener(
-      "load",
-      () => {
-         let 
-            Users = []
-         ;
-
-         formUser.addEventListener(
-            "submit",
-            () => {
-               event.preventDefault();
-               validateForm();
-            }
-         );
-
-         let UsersList = JSON.parse( localStorage.getItem( "Users" ) );
-
-         UsersList.find( v => {
-            if( v.name == "Noely Oliveira Gangello" ) {
-               _( `filter: ${ v.id }` );
-               _( {v} );
-            }
-         } );
-
-      }
-   );
-      
-      
-   /* == [ CRUD ] 
-   == == == == == == == == == */
-   function validateForm() {
-      if(
-         userNameInput.value === "" ||
-         userPasswordInput.value === "" ||
-         userEmailInput.value === ""
-      ) {
-         _( "Campo vazio" );
-      } else {
-         acceptData();
-      }
-   }
-
-   function acceptData() {
-      Users.push( 
-         {
-            id: `User-${ Math.round( Math.random() * 99999999 ) }-${ Users.length + 1 }-${ Math.round( Math.random() * 99999999 ) }-${Users.length}`,
-            name: userNameInput.value,
-            password: userPasswordInput.value,
-            email: userEmailInput.value,
-         }
-      );
-
-      localStorage.setItem( 
-         "Users", 
-         JSON.stringify( Users ) 
-      );
-      createUserCard();
-   }
-
-   function createUserCard() {
-      usersSection.innerHTML = "";
-
-      Users.map( ( k, v ) => {
-         _( "Oi" );
-         return usersSection.innerHTML += `
-            <card>
-               <header>
-                  <user name>${ k.name }</user>
-               </header>
-               <bd>
-                  <user email>
-                     <b>email</b>
-                     <t>${ k.email }</t>
-                  </user>
-                  <user password>
-                     <b>password</b>
-                     <t>${ k.password }</t>
-                  </user>
-               </bd>
-            </card>
-         `;
-         resetForm();
-      } );
-   }
-
-   function resetForm() {
-      [ userNameInput, 
-         userEmailInput,
-         userPasswordInput ].map(
-            v.value = ""
-         );
-   }
-
-   createUserCard();
-</script>
 app
