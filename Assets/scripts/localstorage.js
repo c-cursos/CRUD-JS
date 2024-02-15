@@ -82,6 +82,7 @@ function acceptData() {
       JSON.stringify( Users ) 
    );
    createUserCard();
+   // resetForm();
 }
 
 function createUserCard() {
@@ -95,16 +96,20 @@ function createUserCard() {
             k.name, k.pwd, k.email 
          )
       );
-      resetForm();
    } );
+   resetForm();
 }
 
-function resetForm() {
+let resetForm = () => {
+   // _( "reser: ", userNameInput.value = "" );
+   // userEmailInput.value = "";
+   // userPasswordInput.value = "";
+
    [ userNameInput, 
       userEmailInput,
       userPasswordInput ].map(
       v => v.value = ""
    );
-}
+};
 
 createUserCard();
