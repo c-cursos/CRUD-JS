@@ -4,11 +4,11 @@
 let 
    _ = ( ...v ) => console.log( ...v ),
    Users = JSON.parse( localStorage.getItem( "Users" ) ) || [],
-   cardTemplate = ( name, pwd, email ) => { 
-       `
+   cardTemplate = ( parent, name, pwd, email ) => { 
+      return parent.innerHTML += `
          <card>
             <header>
-               <user name>${ name.value }</user>
+               <user name>${ name }</user>
             </header>
             <bd>
                <user email>
@@ -21,7 +21,8 @@ let
                </user>
             </bd>
          </card>
-      `
+      `; 
+   }
 ;
 
 addEventListener(
@@ -87,25 +88,13 @@ function createUserCard() {
    usersSection.innerHTML = "";
 
    Users.map( ( k, v ) => {
-      _( "Oi" );
-      // return usersSection.innerHTML += `
-//          <card>
-//             <header>
-//                <user name>${ k.name }</user>
-//             </header>
-//             <bd>
-//                <user email>
-//                   <b>email</b>
-//                   <t>${ k.email }</t>
-//                </user>
-//                <user password>
-//                   <b>password</b>
-//                   <t>${ k.password }</t>
-//                </user>
-//             </bd>
-//          </card>
-//       `;
-   cardTemplate( k.name, k.pwd, k.email );
+      _( "Users.map( ( k, v ) )" );
+      return( 
+         cardTemplate( 
+            usersSection, 
+            k.name, k.pwd, k.email 
+         )
+      );
       resetForm();
    } );
 }
@@ -114,8 +103,8 @@ function resetForm() {
    [ userNameInput, 
       userEmailInput,
       userPasswordInput ].map(
-         v.value = ""
-      );
+      v => v.value = ""
+   );
 }
 
 createUserCard();
