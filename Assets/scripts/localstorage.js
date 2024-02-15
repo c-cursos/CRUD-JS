@@ -101,10 +101,6 @@ function createUserCard() {
 }
 
 let resetForm = () => {
-   // _( "reser: ", userNameInput.value = "" );
-   // userEmailInput.value = "";
-   // userPasswordInput.value = "";
-
    [ userNameInput, 
       userEmailInput,
       userPasswordInput ].map(
@@ -113,3 +109,22 @@ let resetForm = () => {
 };
 
 createUserCard();
+
+/* == [ backup Users db ]
+== == == == == == == == == */
+downloadBtn.addEventListener(
+   "click",
+   () => {
+
+      downloadBtn.setAttribute(    
+         "href", 
+         URL.createObjectURL(
+            new Blob(
+               [ localStorage.getItem( "Users" ) ],
+               { type: "text/plain" }
+            )
+         )
+      );
+
+   }
+);
