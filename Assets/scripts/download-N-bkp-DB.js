@@ -13,7 +13,7 @@ function DownloadDBFile( downloadBtn, nameForDBFile, DB ) {
    downloadBtn.addEventListener( "click", () => {
 
       nameForDBFile.value !== "" ?
-         _( downloadBtn.setAttribute( 
+         ( downloadBtn.setAttribute( 
             "download", 
             `${ nameForDBFile.value }.json` 
          ) ) : ( downloadBtn.setAttribute( 
