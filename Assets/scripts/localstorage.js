@@ -134,3 +134,42 @@ downloadBtn.addEventListener(
 
    }
 );
+
+/* == [ restore Users backup db ] 
+== == == == == == == == == */
+let UsersDBFile = [];
+
+UsersRestoreFileBtn.addEventListener(
+   "click",
+   () => {
+
+      if( UsersRestoreFileInput.files.length > 0 ) {
+         let 
+            fileReader = new FileReader()
+         ;
+
+         fileReader.addEventListener(
+            "load",
+            () => {
+               let result = JSON.parse( 
+                  fileReader.result 
+               );
+               localStorage.setItem( 
+                  "Users", 
+                  JSON.stringify( result ) 
+               );
+               UsersDBFile = JSON.parse( 
+                  localStorage.getItem( "Users" ) 
+               );
+            }
+         );
+            
+         fileReader.readAsText( 
+            UsersRestoreFileInput.files[0] 
+         );
+
+         Users = JSON.parse( localStorage.getItem( "Users" ) );
+      }
+      createUserCard();
+   }
+);

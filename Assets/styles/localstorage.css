@@ -139,3 +139,12 @@ card > bd > user > b {
 card > bd > user > t {
    width: 100%;
 }
+
+
+console {
+   background: #212329;
+}
+remove-db, download-usersdb, restore-usersdb-file {
+   display: grid;
+   padding: 2vw;
+}

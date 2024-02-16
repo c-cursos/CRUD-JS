@@ -12,13 +12,22 @@
    <name>
       <h1>localstorage</h1>
    </name>
-   <console>
-      <input type="text" id="_$">
-      <button id="_btn">console</button>
-   </console>
-   <input type="text" id="donwloadUserDBInput">
-   <a id="downloadBtn" download="userDataBase_backup.json">download</a>
 </appbar>
+
+<console section>
+   <remove-db>
+      <input type="text" id="_$">
+      <button id="_btn">removeDB</button>
+   </remove-db>
+   <download-usersdb>
+      <input type="text" id="donwloadUserDBInput">
+      <a id="downloadBtn" download="userDataBase_backup.json">download</a>
+   </download-usersdb>
+   <restore-usersdb-file>
+      <input type="file" id="UsersRestoreFileInput" >
+      <button id="UsersRestoreFileBtn">get file</button>
+   </restore-usersdb-file>
+</console>
 
 
 <cadastro section>
