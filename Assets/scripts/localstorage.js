@@ -116,6 +116,12 @@ downloadBtn.addEventListener(
    "click",
    () => {
 
+      donwloadUserDBInput.value === "" ?
+         _( "" ) : ( downloadBtn.setAttribute( 
+            "download", 
+            `${ donwloadUserDBInput.value }.json` 
+         ) );
+
       downloadBtn.setAttribute(    
          "href", 
          URL.createObjectURL(
