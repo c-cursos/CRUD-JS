@@ -112,67 +112,86 @@ createUserCard();
 
 /* == [ backup Users db ]
 == == == == == == == == == */
-downloadBtn.addEventListener(
-   "click",
-   () => {
+function DownloadDBFile( downloadBtn, nameForDBFile, DB ) {
 
-      donwloadUserDBInput.value === "" ?
-         _( "" ) : ( downloadBtn.setAttribute( 
+   /* == == == == == == == == ==
+   downloadBtn: button for download and backup db file
+   nameForDBFile: name for db file
+   DB: Database
+   == == == == == == == == == */
+
+   downloadBtn.addEventListener( "click", () => {
+
+      nameForDBFile.value !== "" ?
+         _( downloadBtn.setAttribute( 
             "download", 
-            `${ donwloadUserDBInput.value }.json` 
+            `${ nameForDBFile.value }.json` 
+         ) ) : ( downloadBtn.setAttribute( 
+            "download", 
+            `${ nameForDBFile.value = "db-backup-file" }.json` 
          ) );
 
       downloadBtn.setAttribute(    
          "href", 
          URL.createObjectURL(
             new Blob(
-               [ localStorage.getItem( "Users" ) ],
+               [ localStorage.getItem( DB ) ],
                { type: "text/plain" }
             )
          )
       );
 
-   }
+   } );
+}
+
+DownloadDBFile(
+   downloadBtn,
+   donwloadUserDBInput,
+   "Users"
 );
 
 /* == [ restore Users backup db ] 
 == == == == == == == == == */
 function ReadInputFile( input, btn, userDB_Ob, userDB ) {
 
-   btn.addEventListener(
-      "click",
-      () => {
+   /* == == == == == == == == == 
+   input: input were locate file with db backedup
+   btn: button used to start 
+   userDB_Ob: js variable that holds database converted to object
+   userDB: database that stores the data
+   == == == == == == == == == */
+
+   btn.addEventListener( "click", () => {
    
-         if( input.files.length > 0 ) {
-            let 
-               fileReader = new FileReader()
-            ;
+      if( input.files.length > 0 ) {
+         let 
+            fileReader = new FileReader()
+         ;
    
-            fileReader.addEventListener(
-               "load",
-               () => {
-                  let result = JSON.parse( 
-                     fileReader.result 
-                  );
-                  localStorage.setItem( 
-                     userDB, 
-                     JSON.stringify( result ) 
-                  );
-                  userDB_Ob = JSON.parse( 
-                     localStorage.getItem( userDB ) 
-                  );
-               }
-            );
+         fileReader.addEventListener(
+            "load",
+            () => {
+               let result = JSON.parse( 
+                  fileReader.result 
+               );
+               localStorage.setItem( 
+                  userDB, 
+                  JSON.stringify( result ) 
+               );
+               userDB_Ob = JSON.parse( 
+                  localStorage.getItem( userDB ) 
+               );
+            }
+         );
                
-            fileReader.readAsText( 
-               input.files[0] 
-            );
-   
-         }
-         createUserCard();
+         fileReader.readAsText( 
+            input.files[0] 
+         );
       }
-   );
+      createUserCard();
+   } );
 }
+
 ReadInputFile(
    UsersRestoreFileInput, 
    UsersRestoreFileBtn,
