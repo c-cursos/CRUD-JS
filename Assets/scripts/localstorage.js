@@ -137,39 +137,45 @@ downloadBtn.addEventListener(
 
 /* == [ restore Users backup db ] 
 == == == == == == == == == */
-let UsersDBFile = [];
+function ReadInputFile( input, btn, userDB_Ob, userDB ) {
 
-UsersRestoreFileBtn.addEventListener(
-   "click",
-   () => {
-
-      if( UsersRestoreFileInput.files.length > 0 ) {
-         let 
-            fileReader = new FileReader()
-         ;
-
-         fileReader.addEventListener(
-            "load",
-            () => {
-               let result = JSON.parse( 
-                  fileReader.result 
-               );
-               localStorage.setItem( 
-                  "Users", 
-                  JSON.stringify( result ) 
-               );
-               UsersDBFile = JSON.parse( 
-                  localStorage.getItem( "Users" ) 
-               );
-            }
-         );
-            
-         fileReader.readAsText( 
-            UsersRestoreFileInput.files[0] 
-         );
-
-         Users = JSON.parse( localStorage.getItem( "Users" ) );
+   btn.addEventListener(
+      "click",
+      () => {
+   
+         if( input.files.length > 0 ) {
+            let 
+               fileReader = new FileReader()
+            ;
+   
+            fileReader.addEventListener(
+               "load",
+               () => {
+                  let result = JSON.parse( 
+                     fileReader.result 
+                  );
+                  localStorage.setItem( 
+                     userDB, 
+                     JSON.stringify( result ) 
+                  );
+                  userDB_Ob = JSON.parse( 
+                     localStorage.getItem( userDB ) 
+                  );
+               }
+            );
+               
+            fileReader.readAsText( 
+               input.files[0] 
+            );
+   
+         }
+         createUserCard();
       }
-      createUserCard();
-   }
+   );
+}
+ReadInputFile(
+   UsersRestoreFileInput, 
+   UsersRestoreFileBtn,
+   Users,
+   "Users"
 );
