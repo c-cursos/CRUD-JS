@@ -56,15 +56,16 @@ addEventListener(
 /* == [ CRUD ] 
 == == == == == == == == == */
 function validateForm() {
-   if(
-      userNameInput.value === "" ||
-      userPasswordInput.value === "" ||
-      userEmailInput.value === ""
-   ) {
-      _( "Campo vazio" );
-   } else {
-      acceptData();
-   }
+   [ userNameInput, 
+      userPasswordInput, 
+      userEmailInput ].map(
+      v => v.value === "" ?
+         (
+            ( v.placeholder = "Esse campo está vazio" ) &&
+            v.setAttribute( "class", "danger" )
+         ) :
+         acceptData()
+   );
 }
 
 function acceptData() {

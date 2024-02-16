@@ -66,6 +66,10 @@ form > bd > label > input {
    padding: 0.3rem;
    border-radius: .3rem;
 }
+input.danger::placeholder {
+   color: #f55;
+   font-weight: 900;
+}
 form > footer {
    background: #27f5;
    gap: 1.5em;
