@@ -4,7 +4,7 @@
 let 
    _ = ( ...v ) => console.log( ...v ),
    Users = JSON.parse( localStorage.getItem( "Users" ) ) || [],
-   cardTemplate = ( parent, name, pwd, email ) => { 
+   cardTemplate = ( parent, name, password, email ) => { 
       return parent.innerHTML += `
          <card>
             <header>
@@ -17,7 +17,7 @@ let
                </user>
                <user password>
                   <b>password</b>
-                  <t>${ pwd }</t>
+                  <t>${ password }</t>
                </user>
             </bd>
          </card>
@@ -83,7 +83,6 @@ function acceptData() {
       JSON.stringify( Users ) 
    );
    createUserCard();
-   // resetForm();
 }
 
 function createUserCard() {
@@ -94,7 +93,7 @@ function createUserCard() {
       return( 
          cardTemplate( 
             usersSection, 
-            k.name, k.pwd, k.email 
+            k.name, k.password, k.email 
          )
       );
    } );
