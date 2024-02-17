@@ -107,7 +107,8 @@ products > card > home > options > product-color {
 products > card > home > footer {
    display: grid;
    grid-auto-flow: column;
-   grid-template-columns: 40% 40%;
+   grid-template-columns: 1fr 1fr;
+   gap: 5%;
    align-items: center;
    justify-content: space-around;
 }

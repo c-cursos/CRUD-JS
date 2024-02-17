@@ -40,3 +40,33 @@ addEventListener( "load", () => {
    
 } );
 
+/* 
+id
+nome do produto
+fotos[
+   capa, hover, frente, costas, left, right, completo
+]
+preço
+descrição
+cores[]
+*/
+let crud = [
+   productsObj = [],
+
+   validateForm = () => {
+
+      FormProducts.addEventListener( "submit", () => {
+         [ productName, productPrice, productDescription, 
+            productColors, productImages ].map(
+            v => v.value === "" ? 
+               ( v.placeholder = "campo está vazio" ) : (
+                  acceptData()
+               )
+         );
+      } );
+   },
+
+   AcceptData = () => {
+      let data;
+   }
+];
