@@ -9,7 +9,7 @@ let
 ;
 
 let 
-   productCard_Template = `
+   /* productCard_Template = `
    <card>
       <card-img>
          <img src="https://livrosqueajudam.com.br/wp-content/uploads/2017/09/resenha-livro-a-magia-2-990x557.jpg" alt="">
@@ -34,10 +34,42 @@ let
       </home>
    </card>
    `
+; */
+   productCard_Template = (
+      innerHTML, imgCover, name, price, description, colors
+   ) => { 
+      return( innerHTML.innerHTML += `
+      <card>
+         <card-img>
+            <img src="${ imgCover }" alt="">
+         </card-img>
+         <home>
+            <h3>${ name }</h3>
+            <h1>$${ price }</h1>
+            <p>
+               ${ description }
+            </p>
+            <options>
+               <product-color bg=""></product-color>
+               <product-color bg=""></product-color>
+            </options>
+            <footer>
+               <button>editar</button>
+               <button>deletar</button>
+            </footer>
+         </home>
+      </card>
+   ` ); }
 ;
 
 addEventListener( "load", () => {
-   
+   productForm.addEventListener( "submit", () => {
+      event.preventDefault();
+
+      validateForm();
+
+   } );
+   createData();
 } );
 
 /* 
@@ -50,23 +82,82 @@ preço
 descrição
 cores[]
 */
-let crud = [
+let 
    productsObj = [],
+   inputs1 = [
+      productName,
+      productPrice,
+      productDescription,
+      productImgCover,
+   ],
+   // inputs2 = [
+   //    productImgHover,
+   //    productImgFrente,
+   //    productImgCostas,
+   //    productImgRight,
+   //    productImgCompleto,
+   // ],
+   // inputs = [ ...inputs1, ...inputs2 ],
 
    validateForm = () => {
-
-      FormProducts.addEventListener( "submit", () => {
-         [ productName, productPrice, productDescription, 
-            productColors, productImages ].map(
-            v => v.value === "" ? 
-               ( v.placeholder = "campo está vazio" ) : (
-                  acceptData()
-               )
-         );
-      } );
+      [ productName, 
+         productPrice, 
+         productDescription ].map(
+         v => v.value === "" ? 
+            ( v.placeholder = "campo está vazio" ) : (
+               acceptData()
+            )
+      );
    },
 
-   AcceptData = () => {
-      let data;
+   acceptData = () => {
+
+      productsObj.push( {
+         name: productName.value,
+         price: productPrice.value,
+         description: productDescription.value,
+         cover: productImgCover.value,
+         // colors: productColor.value,
+         // images: [ 
+         // productImgCover.value,
+         // productImgHover.value,
+         // productImgFrente.value,
+         // productImgCostas.value,
+         // productImgRight.value,
+         // productImgCompleto.value,
+         // ],
+      } );
+
+      localStorage.setItem( 
+         "Products",
+         JSON.stringify( productsObj ) 
+      );
+
+      resetForm();
+   },
+
+   createData = () => {
+      productsPart.innerHTML = "";
+
+      productsObj = JSON.parse( "Products" );
+
+      productsObj.map(
+         ( k, v ) => {
+            return(
+               productCard_Template(
+                  productsPart, k.imgCover, k.name, k.price, k.description
+               )
+            );
+         }
+      );
+   },
+
+
+
+   resetForm = () => {
+      _( "reseting form" );
+      inputs1.map(
+         v => v.value = ""
+      );
    }
-];
+;

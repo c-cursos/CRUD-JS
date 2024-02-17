@@ -14,5 +14,19 @@ form.addEventListener
    resetForm
    bkpData
    restoreData
-   
+
 ]
+
+inputs1 = [
+   productName,
+   productPrice,
+   productDescription,
+   productImgCover,
+],
+inputs2 = [
+   productImgHover,
+   productImgFrente,
+   productImgCostas,
+   productImgRight,
+   productImgCompleto,
+],

@@ -122,3 +122,29 @@ products > card > home > footer > button {
 }
 
 
+product-input {
+   display: block;
+}
+product-input > form {
+   display: block;
+   width: clamp( 100px, 100%, 350px );
+   background: cornflowerblue;
+}
+product-input > form > header {}
+product-input > form > home {
+   display: grid;
+   padding: 1.5rem;
+   gap: 1.5rem;
+}
+product-input > form > home > label {
+   display: grid;
+   gap: 0;
+}
+product-input > form > footer {
+   padding: 2vw;
+}
+product-input > form > footer > input {
+   display: block;
+   margin: auto;
+}
+
