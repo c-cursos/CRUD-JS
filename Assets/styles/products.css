@@ -1,0 +1,123 @@
+
+
+* { box-sizing: border-box; }
+html {
+   background: #1b1d22;
+   color: #d5e5f5;
+   font: 1em sans-serif;
+}
+
+/* == [ body ] 
+== == == == == == == == == */
+body {
+   min-height: 100vh;
+   margin: 0;
+}
+
+home { display: block; }
+[section] { display: block; }
+/* == [ app-bar ] 
+== == == == == == == == == */
+app-bar {
+   display: block;
+   position: sticky;
+   top: 0; left: 0;
+   z-index: 9;
+   height: 90px;
+   background: #212329;
+}
+
+/* == [ side-bar ] 
+== == == == == == == == == */
+side-bar {
+   display: block;
+   position: fixed;
+   top: 90px; left: 0;
+   z-index: 6;
+   width: 81px;
+   height: calc( 100% - 90px );
+   background: #16181c;
+}
+
+/* == [ home-page ] 
+== == == == == == == == == */
+home-page {
+   display: block;
+   /* background: ; */
+   width: calc( 100% - 81px );
+   position: relative;
+   left: 81px;
+}
+
+
+/* == [ card products ] 
+== == == == == == == == == */
+products > card {
+   display: block;
+   border-radius: 1.5rem;
+   width: clamp( 100px, 23%, 350px );
+   overflow: hidden;
+   color: #000;
+   font-size: 0.7em;
+}
+products > card > card-img {
+   display: block;
+   width: 100%;
+   aspect-ratio: 10 / 9;
+   background: #27f5;
+}
+products > card > card-img > img {
+   height: 100%;
+   object-fit: cover;
+}
+
+products > card > home {
+   display: grid;
+   padding: 1rem;
+   gap: 1rem;
+   background: linear-gradient( 0deg, #c5c5c5 0% 1%, #F5F5F5, #f5f5f5 );
+}
+products > card > home > * { margin: 0; }
+products > card > home > h3 {
+   margin: 0;
+}
+products > card > home > h1 {
+   margin: 0;
+}
+products > card > home > p {
+   color: #000b;
+}
+products > card > home > options {
+   display: flex;
+   gap: .4rem;
+   grid-auto-flow: column;
+   align-items: center;
+   justify-content: flex-end;
+   width: 100%;
+   aspect-ratio: 28 / 2;
+   padding-right: 1rem;
+}
+products > card > home > options > product-color {
+   display: block;
+   height: 100%;
+   aspect-ratio: 1 / 1;
+   background: #f55;
+   border: #2225 1px solid;
+}
+products > card > home > footer {
+   display: grid;
+   grid-auto-flow: column;
+   grid-template-columns: 40% 40%;
+   align-items: center;
+   justify-content: space-around;
+}
+products > card > home > footer > button {
+   border-radius: 0.4rem;
+   border: 1px solid #2225;
+   padding: 0.3rem 0;
+   background: radial-gradient( circle at bottom left, #27f, #27f9 );
+   color: #fff;
+   text-shadow: 0 0 5px #0009;
+}
+
+

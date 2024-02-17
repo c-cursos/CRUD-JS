@@ -146,7 +146,8 @@ function DownloadDBFile( downloadBtn, nameForDBFile, DB ) {
 DownloadDBFile(
    downloadBtn,
    donwloadUserDBInput,
-   "Users"
+   // "Users"
+   "data"
 );
 
 /* == [ restore Users backup db ] 
