@@ -61,7 +61,7 @@ products > card {
    display: block;
    border-radius: 1.5rem;
    width: clamp( 100px, 23%, 350px );
-   width: clamp( 180px, 25%, 350px );
+   width: clamp( 180px, 20vw, 350px );
    /* aspect-ratio: 1 / 2.32; */
    /* aspect-ratio: 1 / 2.2; */
    overflow: hidden;
