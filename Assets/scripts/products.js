@@ -10,18 +10,18 @@ let
 
 let 
    productCard_Template = (
-      innerHTML, imgCover, name, price, description, colors
+      target, dbObj/* , cover, name, price, description, colors */
    ) => { 
-      return( innerHTML.innerHTML += `
+      return( target.innerHTML += `
       <card>
          <card-img>
-            <img src="${ imgCover }" alt="">
+            <img src="${ dbObj.cover }" alt="">
          </card-img>
          <home>
-            <h3>${ name }</h3>
-            <h1>$${ price }</h1>
+            <h3>${ dbObj.name }</h3>
+            <h1>$${ dbObj.price }</h1>
             <p>
-               ${ description }
+               ${ dbObj.description }
             </p>
             <options>
                <product-color bg=""></product-color>
@@ -40,98 +40,76 @@ addEventListener( "load", () => {
    productForm.addEventListener( "submit", () => {
       event.preventDefault();
 
-      validateForm();
+      validateForm(
+         [ 
+            productName, 
+            productPrice, 
+            productDescription 
+         ],
+         { 
+            dbObj: productsObj, 
+            data2Push: {
+               name: productName.value,
+               price: productPrice.value,
+               description: productDescription.value,
+               cover: productImgCover.value,
+            },
+            db: "Products" 
+         },
+         [
+            productName,
+            productPrice,
+            productDescription,
+            productImgCover,
+         ]
+      );
 
    } );
-   createData();
+   createData( productsPart, productsObj, "Products" );
 } );
 
-/* 
-id
-nome do produto
-fotos[
-   capa, hover, frente, costas, left, right, completo
-]
-preço
-descrição
-cores[]
-*/
 let 
    productsObj = [],
-   inputs1 = [
-      productName,
-      productPrice,
-      productDescription,
-      productImgCover,
-   ],
-   // inputs2 = [
-   //    productImgHover,
-   //    productImgFrente,
-   //    productImgCostas,
-   //    productImgRight,
-   //    productImgCompleto,
-   // ],
-   // inputs = [ ...inputs1, ...inputs2 ],
 
-   validateForm = () => {
-      [ productName, 
-         productPrice, 
-         productDescription ].map(
+   validateForm = ( inputsList, acceptData_Obj, inputs2Reset ) => {
+      inputsList.map(
          v => v.value === "" ? 
             ( v.placeholder = "campo está vazio" ) : (
-               acceptData()
+               acceptData(
+                  acceptData_Obj.dbObj, 
+                  acceptData_Obj.data2Push, 
+                  acceptData_Obj.db,
+                  inputs2Reset
+               )
             )
       );
    },
 
-   acceptData = () => {
-
-      productsObj.push( {
-         name: productName.value,
-         price: productPrice.value,
-         description: productDescription.value,
-         cover: productImgCover.value,
-         // colors: productColor.value,
-         // images: [ 
-         // productImgCover.value,
-         // productImgHover.value,
-         // productImgFrente.value,
-         // productImgCostas.value,
-         // productImgRight.value,
-         // productImgCompleto.value,
-         // ],
-      } );
+   acceptData = ( dbObj, data2Push, db, inputs2Reset ) => {
+      dbObj.push( data2Push );
 
       localStorage.setItem( 
-         "Products",
-         JSON.stringify( productsObj ) 
+         db,
+         JSON.stringify( dbObj ) 
       );
 
-      resetForm();
+      resetForm( inputs2Reset );
    },
 
-   createData = () => {
-      productsPart.innerHTML = "";
+   createData = ( target, dbObj, db ) => {
+      target.innerHTML = "";
 
-      productsObj = JSON.parse( "Products" );
+      dbObj = JSON.parse( db );
 
-      productsObj.map(
-         ( k, v ) => {
-            return(
-               productCard_Template(
-                  productsPart, k.imgCover, k.name, k.price, k.description
-               )
-            );
-         }
-      );
+      dbObj.map( k => {
+         return( productCard_Template(
+            target, k
+         ) );
+      } );
    },
 
-
-
-   resetForm = () => {
+   resetForm = ( formInputs ) => {
       _( "reseting form" );
-      inputs1.map(
-         v => v.value = ""
-      );
+      formInputs.map( v => v.value = "" );
    }
 ;
