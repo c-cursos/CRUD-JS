@@ -43,7 +43,7 @@ side-bar {
 == == == == == == == == == */
 home-page {
    display: block;
-   /* background: ; */
+   background: #fff;
    width: calc( 100% - 81px );
    position: relative;
    left: 81px;
@@ -55,15 +55,15 @@ home-page {
 #productsTarget {
    display: grid;
    grid-auto-flow: column;
-   /* grid-template-columns: 1fr; */
+   gap: 1.5rem;
+   padding: 1.5rem;
+   grid-template-columns: repeat( auto-fit, minmax( 190px, 1fr ) );
 }
 products > card {
    display: block;
    border-radius: 1.5rem;
-   width: clamp( 100px, 23%, 350px );
    width: clamp( 180px, 20vw, 350px );
-   /* aspect-ratio: 1 / 2.32; */
-   /* aspect-ratio: 1 / 2.2; */
+   margin: auto;
    overflow: hidden;
    color: #000;
    font-size: 0.7em;

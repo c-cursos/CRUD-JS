@@ -2,13 +2,50 @@
 
 "use strict";
 
-let 
+const 
    _ = ( ...v ) => console.log( ...v ),
    $ = v => document.querySelector( v ),
    $$ = v => document.querySelectorAll( v )
 ;
 
-let 
+addEventListener( "load", () => {
+   productForm.addEventListener( "submit", () => {
+      event.preventDefault();
+
+      /* validateForm:
+       */
+      validateForm(
+         [ 
+            productName, 
+            productPrice, 
+            productDescription 
+         ],
+         { 
+            dbObj: products, 
+            data2Push: {
+               name: productName.value,
+               price: productPrice.value,
+               description: productDescription.value,
+               cover: productImgCover.value,
+            },
+            db: "Products" 
+         },
+         [
+            productName,
+            productPrice,
+            productDescription,
+            productImgCover,
+         ],
+         productsTarget
+      );
+
+   } );
+
+   createData( productsTarget, products, "Products" );
+
+} );
+
+const 
    productCard_Template = ( target, dbObj ) => { 
       return( target.innerHTML += `
       <card>
@@ -32,47 +69,10 @@ let
          </home>
       </card>
    ` ); }
-;
-
-addEventListener( "load", () => {
-   productForm.addEventListener( "submit", () => {
-      event.preventDefault();
-
-      validateForm(
-         [ 
-            productName, 
-            productPrice, 
-            productDescription 
-         ],
-         { 
-            dbObj: productsObj, 
-            data2Push: {
-               name: productName.value,
-               price: productPrice.value,
-               description: productDescription.value,
-               cover: productImgCover.value,
-            },
-            db: "Products" 
-         },
-         [
-            productName,
-            productPrice,
-            productDescription,
-            productImgCover,
-         ],
-         productsTarget
-      );
-
-   } );
-
-   createData( productsTarget, productsObj, "Products" );
-
-} );
-
-let 
-   productsObj = localStorage.getItem( "Products" ) ? 
-      JSON.parse( localStorage.getItem( "Products" ) ) : [],
-
+   ,
+   products = localStorage.getItem( "Products" ) ? 
+      JSON.parse( localStorage.getItem( "Products" ) ) : []
+   ,
    validateForm = ( inputsList, acceptData_Obj, inputs2Reset, target2Create ) => {
       inputsList.map(
          v => v.value === "" ? 
@@ -86,8 +86,8 @@ let
                )
             )
       );
-   },
-
+   }
+   ,
    acceptData = ( dbObj, data2Push, db, inputs2Reset, target2Create ) => {
       dbObj.push( data2Push );
 
@@ -101,23 +101,23 @@ let
       createData(
          target2Create, dbObj, db
       );
-   },
-
+   }
+   ,
    createData = ( target, dbObj, db ) => {
       target.innerHTML = "";
 
-      _( "productsOBJ: ", productsObj, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
+      _( "products: ", products, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
       dbObj = JSON.parse( localStorage.getItem( db )  );
 
-      _( "\n\n\n== == ==", "productsOBJ: ", productsObj, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
+      _( "\n\n\n== == ==", "products: ", products, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
 
       dbObj.map( k => {
          return( productCard_Template(
             target, k
          ) );
       } );
-   },
-
+   }
+   ,
    resetForm = ( formInputs ) => {
       _( "reseting form" );
       formInputs.map( v => v.value = "" );
