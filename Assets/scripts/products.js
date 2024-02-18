@@ -9,9 +9,7 @@ let
 ;
 
 let 
-   productCard_Template = (
-      target, dbObj/* , cover, name, price, description, colors */
-   ) => { 
+   productCard_Template = ( target, dbObj ) => { 
       return( target.innerHTML += `
       <card>
          <card-img>
@@ -61,17 +59,21 @@ addEventListener( "load", () => {
             productPrice,
             productDescription,
             productImgCover,
-         ]
+         ],
+         productsTarget
       );
 
    } );
-   createData( productsPart, productsObj, "Products" );
+
+   createData( productsTarget, productsObj, "Products" );
+
 } );
 
 let 
-   productsObj = [],
+   productsObj = localStorage.getItem( "Products" ) ? 
+      JSON.parse( localStorage.getItem( "Products" ) ) : [],
 
-   validateForm = ( inputsList, acceptData_Obj, inputs2Reset ) => {
+   validateForm = ( inputsList, acceptData_Obj, inputs2Reset, target2Create ) => {
       inputsList.map(
          v => v.value === "" ? 
             ( v.placeholder = "campo está vazio" ) : (
@@ -79,13 +81,14 @@ let
                   acceptData_Obj.dbObj, 
                   acceptData_Obj.data2Push, 
                   acceptData_Obj.db,
-                  inputs2Reset
+                  inputs2Reset,
+                  target2Create
                )
             )
       );
    },
 
-   acceptData = ( dbObj, data2Push, db, inputs2Reset ) => {
+   acceptData = ( dbObj, data2Push, db, inputs2Reset, target2Create ) => {
       dbObj.push( data2Push );
 
       localStorage.setItem( 
@@ -94,12 +97,19 @@ let
       );
 
       resetForm( inputs2Reset );
+
+      createData(
+         target2Create, dbObj, db
+      );
    },
 
    createData = ( target, dbObj, db ) => {
       target.innerHTML = "";
 
-      dbObj = JSON.parse( db );
+      _( "productsOBJ: ", productsObj, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
+      dbObj = JSON.parse( localStorage.getItem( db )  );
+
+      _( "\n\n\n== == ==", "productsOBJ: ", productsObj, "\ndbOBJ: ", dbObj, "\nlocalStorage: db ", localStorage.getItem( db ) );
 
       dbObj.map( k => {
          return( productCard_Template(

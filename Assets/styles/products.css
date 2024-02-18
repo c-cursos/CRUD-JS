@@ -52,10 +52,18 @@ home-page {
 
 /* == [ card products ] 
 == == == == == == == == == */
+#productsTarget {
+   display: grid;
+   grid-auto-flow: column;
+   /* grid-template-columns: 1fr; */
+}
 products > card {
    display: block;
    border-radius: 1.5rem;
    width: clamp( 100px, 23%, 350px );
+   width: clamp( 180px, 25%, 350px );
+   /* aspect-ratio: 1 / 2.32; */
+   /* aspect-ratio: 1 / 2.2; */
    overflow: hidden;
    color: #000;
    font-size: 0.7em;
